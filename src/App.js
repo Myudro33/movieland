@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { React, useEffect, useState } from "react";
+import "./App.css";
+import searchIcon from "./search.svg";
+import MovieCard from "./MovieCard";
+import useKeypress from "react-use-keypress";
+import { options } from './fetchData'
+import Main from "./components/Main";
+import { Routes, Route } from "react-router-dom";
+import MovieDetails from "./components/MovieDetails";
+const API_URL = "https://www.omdbapi.com?apikey=b6003d8a";
 
-function App() {
+
+const App = () => {
+  const text = 'Home'
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="navbar">
+        <a style={{textDecoration:'none'}} href="/">
+        <h1>{text}</h1>
+      </a>
+      </div>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/movies/:title" element={<MovieDetails />} />
+      </Routes>
     </div>
-  );
-}
-
+  )
+};
 export default App;
